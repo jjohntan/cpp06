@@ -6,21 +6,16 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:26:49 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/12 18:45:34 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/14 17:29:26 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_HPP
 # define DATA_HPP
 
-#include <iostream>
-
 struct Data
 {
-	int ;
-	char ;
-	std::string str;
+	int value;
 };
-
 
 #endif
