@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:50:06 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/16 20:51:58 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/17 15:15:17 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 
 #include "Base.hpp"
 
-class B: public Base
-{
-private:
-	/* data */
-public:
-	B(/* args */);
-	~B();
-};
+class B: public Base {};
 
 #endif

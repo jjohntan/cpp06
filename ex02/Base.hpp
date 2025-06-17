@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:47:33 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/16 20:56:13 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/17 15:11:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 class Base
 {
-public:
-	Base();
-	virtual ~Base();
+	public:
+		virtual ~Base();
 };
+
+Base * generate(void);
+void identify(Base* p);
+void identify(Base& p);
 
 #endif
