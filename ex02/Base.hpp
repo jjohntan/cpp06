@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:47:33 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/17 15:45:38 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/18 20:22:46 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define BASE_HPP
 
 #include <iostream>
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 class Base
 {
