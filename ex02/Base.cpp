@@ -6,18 +6,49 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:47:36 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/18 20:09:27 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/19 18:43:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-Base::~Base() {};
-
-// Base * generate(void)
-// {
-	
-// }
+/**
+ * reference type can't return a null reference
+ */
+void identify(Base& p)
+{
+	try
+	{
+		A &ap = dynamic_cast<A&>(p);
+		(void)ap;
+		std::cout << "A" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+	}
+	try
+	{
+		B &bp = dynamic_cast<B&>(p);
+		(void)bp;
+		std::cout << "B" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+	}
+	try
+	{
+		C &cp = dynamic_cast<C&>(p);
+		(void)&cp;
+		std::cout << "C" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+	}
+	std::cout << "Unknown" << std::endl;
+}
 
 void identify(Base* p)
 {
@@ -35,40 +66,16 @@ void identify(Base* p)
 	}
 	else
 	{
-		std::cout << "No such type" << std::endl;
+		std::cout << "Unknown" << std::endl;
 	}
 }
 
-/**
- * reference type can't return a null reference
- */
-void identify(Base& p)
+// Base * generate(void)
+// {
+	
+// }
+
+Base::~Base()
 {
-	try
-	{
-		dynamic_cast<A&>(p);
-		std::cout << "A" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		dynamic_cast<B&>(p);
-		std::cout << "B" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		dynamic_cast<C&>(p);
-		std::cout << "C" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	std::cout << "Base destructor called" << std::endl;
 }
