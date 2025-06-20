@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:47:36 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/20 15:46:51 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:50:23 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,29 @@ void identify(Base* p)
 	}
 }
 
-// Base * generate(void)
-// {
+Base * generate(void)
+{
+	srand(time(NULL));
 	
-// }
+	int num = (std::rand() % 3);//Generate random number
+	
+	switch (num)
+	{
+	case 0:
+		return new A;
+		break;
+	case 1:
+		return new B;
+		break;
+	case 2:
+		return new C;
+		break;
+	default:
+		std::cout << "Unknown type!" << std::endl;
+		break;
+	}
+	return NULL;
+}
 
 Base::~Base()
 {
