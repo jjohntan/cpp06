@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:47:36 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/19 18:43:25 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/20 15:46:51 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void identify(Base& p)
 		A &ap = dynamic_cast<A&>(p);
 		(void)ap;
 		std::cout << "A" << std::endl;
+		return;
 	}
 	catch(const std::exception& e)
 	{
@@ -34,6 +35,7 @@ void identify(Base& p)
 		B &bp = dynamic_cast<B&>(p);
 		(void)bp;
 		std::cout << "B" << std::endl;
+		return;
 	}
 	catch(const std::exception& e)
 	{
@@ -43,11 +45,12 @@ void identify(Base& p)
 		C &cp = dynamic_cast<C&>(p);
 		(void)&cp;
 		std::cout << "C" << std::endl;
+		return;
 	}
 	catch(const std::exception& e)
 	{
 	}
-	std::cout << "Unknown" << std::endl;
+	std::cout << "Unknown pointer!" << std::endl;
 }
 
 void identify(Base* p)
@@ -66,7 +69,7 @@ void identify(Base* p)
 	}
 	else
 	{
-		std::cout << "Unknown" << std::endl;
+		std::cout << "Unknown reference!" << std::endl;
 	}
 }
 
