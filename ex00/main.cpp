@@ -6,7 +6,13 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:58 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/06 16:59:59 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/22 19:35:46 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ScalarConverter.hpp"
+
+int main()
+{
+	detectType("C");
+}
