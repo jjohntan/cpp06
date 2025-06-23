@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:20 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/22 19:35:08 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:13:26 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCALARCONVERTER
 
 #include <iostream>
+#include <cctype>
 
 class ScalarConverter
 {
@@ -23,7 +24,7 @@ class ScalarConverter
 		ScalarConverter(const ScalarConverter &other);
 		ScalarConverter &operator=(const ScalarConverter &other);
 	public:
-		static void convert(std::string);
+		static void convert(std::string literal);
 };
 
 void detectType(std::string literal);
