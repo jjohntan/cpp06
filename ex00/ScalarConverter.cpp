@@ -6,16 +6,16 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/24 15:30:17 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/24 15:36:00 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-// void ScalarConverter::convert(std::string literal)
-// {
+void ScalarConverter::convert(std::string literal)
+{
 	
-// }
+}
 
 // bool isFloat(std::string literal)
 // {
@@ -64,4 +64,5 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
 	std::cout << "ScalarConverter Copy assignment operator called " << std::endl;
 	(void)other;
+	return *this;
 }
