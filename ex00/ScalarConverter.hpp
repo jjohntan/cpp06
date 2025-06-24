@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:20 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/23 16:13:26 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/24 15:30:57 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 class ScalarConverter
 {
+	//As this class doesn’t need to store anything at all, this class must not be instanciable by users
 	private:
 		ScalarConverter();
 		~ScalarConverter();

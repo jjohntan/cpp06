@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/23 16:06:29 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/24 15:30:17 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,26 @@ void detectType(std::string literal)
 		std::cout << "Float" << std::endl;
 	// if ()
 	// 	std::cout << "Double" << std::endl;
+}
+
+ScalarConverter::ScalarConverter()
+{
+	std::cout << "ScalarConverter Default constructor called" << std::endl;
+}
+
+ScalarConverter::~ScalarConverter()
+{
+	std::cout << "ScalarConverter Destructor called" << std::endl;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &other)
+{
+	std::cout << "ScalarConverter Copy constructor called" << std::endl;
+	(void)other;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
+{
+	std::cout << "ScalarConverter Copy assignment operator called " << std::endl;
+	(void)other;
 }
