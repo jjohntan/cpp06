@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:58 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/24 20:32:55 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/25 15:23:37 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	ScalarConverter::convert("C");
+	ScalarConverter::convert("1");
 	// detectType("1");
 	// detectType("42.0f");
 }

@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/24 21:13:01 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/25 16:16:36 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,44 @@ void ScalarConverter::convert(std::string literal)
 		case CHAR:
 		{
 			char c = literal[0];
-			// if (c )
-			// {
-				
-			// }
-			int i = static_cast<int>(c);
+		
+			std::cout << "char: " << c << std::endl;
+			int n = static_cast<int>(c);
 			float f = static_cast<float>(c);
 			double d = static_cast<double>(c);
 			
-			std::cout << c << std::endl;
-			std::cout << i << std::endl;
-			std::cout << f << ".0f" << std::endl;
-			std::cout << d << ".0" << std::endl;
+			std::cout << "int: " << n << std::endl;
+			std::cout << "float: " << f << ".0f" << std::endl;
+			std::cout << "double: " << d << ".0" << std::endl;
 			break;
 		}
-		// case INT:
+		case INT:
+		{
+			int n = std::atoi(literal.c_str());
+			char c = static_cast<char>(n);
+			float f = static_cast<float>(n);
+			double d = static_cast<double>(n);
 			
-		// 	break;
+			std::cout << "char: " << c << std::endl;
+			std::cout << "int: " << n << std::endl;
+			std::cout << "float: " << f << ".0f" << std::endl;
+			std::cout << "double: " << d << ".0" << std::endl;
+			break;
+		}
 		// case FLOAT:
-			
+		// {
+		// 	float f = std::stof(literal.c_str());
 		// 	break;
+		// }
 		// case DOUBLE:
-			
+		//{
+			// double d = std::stod(literal.c_str());
 		// 	break;
+		//}
 		// case PSEUDO:
-			
+		//{	
 		// 	break;
+		//}
 	}
 }
 
@@ -63,7 +75,7 @@ int detectType(std::string literal)
 	if (literal.length() == 1 && !isdigit(literal[0]))//check the string length is equals to one
 		return CHAR;
 	if (isInt(literal))
-		std::cout << "Int" << std::endl;
+		return INT;
 	// if (literal[literal.length() - 1] == 'f')
 	// 	std::cout << "Float" << std::endl;
 	// if ()
