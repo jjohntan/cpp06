@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:20 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/25 15:31:57 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/25 19:47:24 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 #include <iostream>
 #include <cctype>
-#include  <iomanip>
-#include  <cstdlib>
+#include <iomanip>
+#include <cstdlib>
+#include <string>
 
 //An enum is a special type that represents a group of constants (unchangeable values)
 enum Type

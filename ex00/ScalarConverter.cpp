@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/25 16:25:02 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/25 20:15:16 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,42 @@ void ScalarConverter::convert(std::string literal)
 		}
 		case FLOAT:
 		{
-			float f = std::atof(literal.c_str());
+			float f = std::strtof(literal.c_str(), 0);
 			char c = static_cast<char>(f);
 			int n = static_cast<float>(f);
 			double d = static_cast<double>(f);
 			
 			std::cout << "char: " << c << std::endl;
 			std::cout << "int: " << n << std::endl;
-			std::cout << "float: " << f << ".0f" << std::endl;
-			std::cout << "double: " << d << ".0" << std::endl;
+			std::cout << "float: " << f;
+			if (f == f)
+				std::cout << ".0";
+			std::cout << "f" << std::endl;
+			std::cout << "double: " << d;
+			if (d == d)
+				std::cout << ".0";
+			std::cout << std::endl;
 			break;
 		}
-		// case DOUBLE:
-		//{
-			// double d = std::stod(literal.c_str());
-		// 	break;
-		//}
+		case DOUBLE:
+		{
+			double d = std::strtod(literal.c_str(), 0);
+			char c = static_cast<char>(d);
+			int n = static_cast<float>(d);
+			float f = static_cast<float>(d);
+			
+			std::cout << "char: " << c << std::endl;
+			std::cout << "int: " << n << std::endl;
+			std::cout << "float: " << f;
+			if (f == f)
+				std::cout << ".0";
+			std::cout << "f" << std::endl;
+			std::cout << "double: " << d;
+			if (d == d)
+				std::cout << ".0";
+			std::cout << std::endl;
+			break;
+		}
 		// case PSEUDO:
 		//{	
 		// 	break;
@@ -86,8 +106,12 @@ int detectType(std::string literal)
 		return INT;
 	if (literal[literal.length() - 1] == 'f')
 		return FLOAT;
-	// if ()
-	// 	std::cout << "Double" << std::endl;
+	if (literal[literal.length() - 1] != 'f')
+		return DOUBLE;
+	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
+		return FLOAT;
+	if (literal == "-inf" || literal == "+inf" || literal == "nan" )
+		return DOUBLE;
 	return ERROR;
 }
 
