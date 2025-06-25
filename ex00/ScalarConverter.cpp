@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/25 16:16:36 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/25 16:25:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,19 @@ void ScalarConverter::convert(std::string literal)
 			std::cout << "double: " << d << ".0" << std::endl;
 			break;
 		}
-		// case FLOAT:
-		// {
-		// 	float f = std::stof(literal.c_str());
-		// 	break;
-		// }
+		case FLOAT:
+		{
+			float f = std::atof(literal.c_str());
+			char c = static_cast<char>(f);
+			int n = static_cast<float>(f);
+			double d = static_cast<double>(f);
+			
+			std::cout << "char: " << c << std::endl;
+			std::cout << "int: " << n << std::endl;
+			std::cout << "float: " << f << ".0f" << std::endl;
+			std::cout << "double: " << d << ".0" << std::endl;
+			break;
+		}
 		// case DOUBLE:
 		//{
 			// double d = std::stod(literal.c_str());
@@ -76,8 +84,8 @@ int detectType(std::string literal)
 		return CHAR;
 	if (isInt(literal))
 		return INT;
-	// if (literal[literal.length() - 1] == 'f')
-	// 	std::cout << "Float" << std::endl;
+	if (literal[literal.length() - 1] == 'f')
+		return FLOAT;
 	// if ()
 	// 	std::cout << "Double" << std::endl;
 	return ERROR;
