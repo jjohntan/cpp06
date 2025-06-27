@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:20 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/27 20:40:52 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/27 22:41:56 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,5 @@ class ScalarConverter
 	public:
 		static void convert(std::string literal);
 };
-
-int detectType(std::string literal);
 
 #endif
