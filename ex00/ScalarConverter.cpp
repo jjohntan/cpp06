@@ -6,11 +6,45 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/25 20:15:16 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/27 22:00:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+static void displaydouble(double d)
+{
+	std::cout << "double: " << d;
+	if (d == d)
+		std::cout << ".0";
+	std::cout << std::endl;
+}
+
+static void displayfloat(float f)
+{
+	std::cout << "float: " << f;
+	if (f == f)
+		std::cout << ".0";
+	std::cout << "f" << std::endl;
+}
+
+// static void displayint(int n)
+// {
+// 	if ()
+// 		std::cout << "int: impossible" << std::endl;
+// 	else
+// 		std::cout << "int: " << n << std::endl;
+// }
+
+static void displaychar(char c)
+{
+	if (c < 0 || c > 127)
+		std::cout << "char: impossible" << std::endl;
+	else if (!isprint(c))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: " << "'" << c << "'" << std::endl;
+}
 
 void ScalarConverter::convert(std::string literal)
 {
@@ -19,15 +53,14 @@ void ScalarConverter::convert(std::string literal)
 		case CHAR:
 		{
 			char c = literal[0];
-		
-			std::cout << "char: " << c << std::endl;
 			int n = static_cast<int>(c);
 			float f = static_cast<float>(c);
 			double d = static_cast<double>(c);
 			
+			displaychar(c);
 			std::cout << "int: " << n << std::endl;
-			std::cout << "float: " << f << ".0f" << std::endl;
-			std::cout << "double: " << d << ".0" << std::endl;
+			displayfloat(f);
+			displaydouble(d);
 			break;
 		}
 		case INT:
@@ -37,55 +70,72 @@ void ScalarConverter::convert(std::string literal)
 			float f = static_cast<float>(n);
 			double d = static_cast<double>(n);
 			
-			std::cout << "char: " << c << std::endl;
+			displaychar(c);
 			std::cout << "int: " << n << std::endl;
-			std::cout << "float: " << f << ".0f" << std::endl;
-			std::cout << "double: " << d << ".0" << std::endl;
+			displayfloat(f);
+			displaydouble(d);
 			break;
 		}
 		case FLOAT:
 		{
 			float f = std::strtof(literal.c_str(), 0);
 			char c = static_cast<char>(f);
-			int n = static_cast<float>(f);
+			int n = static_cast<int>(f);
 			double d = static_cast<double>(f);
 			
-			std::cout << "char: " << c << std::endl;
+			displaychar(c);
 			std::cout << "int: " << n << std::endl;
-			std::cout << "float: " << f;
-			if (f == f)
-				std::cout << ".0";
-			std::cout << "f" << std::endl;
-			std::cout << "double: " << d;
-			if (d == d)
-				std::cout << ".0";
-			std::cout << std::endl;
+			displayfloat(f);
+			displaydouble(d);
 			break;
 		}
 		case DOUBLE:
 		{
 			double d = std::strtod(literal.c_str(), 0);
 			char c = static_cast<char>(d);
-			int n = static_cast<float>(d);
+			int n = static_cast<int>(d);
 			float f = static_cast<float>(d);
 			
-			std::cout << "char: " << c << std::endl;
+			displaychar(c);
 			std::cout << "int: " << n << std::endl;
-			std::cout << "float: " << f;
-			if (f == f)
-				std::cout << ".0";
-			std::cout << "f" << std::endl;
-			std::cout << "double: " << d;
-			if (d == d)
-				std::cout << ".0";
-			std::cout << std::endl;
+			displayfloat(f);
+			displaydouble(d);
 			break;
 		}
-		// case PSEUDO:
-		//{	
-		// 	break;
-		//}
 	}
+}
+
+static bool checkNumeric(std::string literal)
+{
+	int countDot = 0;
+	int countSign = 0;
+	int countF = 0;
+	bool hasdigit = false;
+	
+	for (unsigned int i = 0; i < literal.length(); i++)
+	{
+		if (literal[i] == '.')
+			countDot++;
+		else if (literal[i] == '+' || literal[i] == '-')
+		{
+			if (i != 0)//check if sign not at start
+				return false;
+			countSign++;
+		}
+		else if (literal[i] == 'f')
+			countF++;
+		else if (isdigit(literal[i]))
+			hasdigit = true;
+		else
+			return false;
+	}
+	if (countDot > 1 || countSign > 1)//make sure '.' or sign only contain one
+		return false;
+	if (countF == 1 && literal[literal.length() - 1] != 'f')//make sure f only at the end
+		return false;
+	if (!hasdigit)//make sure only contain digit
+		return false;
+	return true;
 }
 
 static bool isInt(std::string literal)
@@ -100,17 +150,17 @@ static bool isInt(std::string literal)
 
 int detectType(std::string literal) 
 {
+	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
+		return FLOAT;
+	if (literal == "-inf" || literal == "+inf" || literal == "nan" )
+		return DOUBLE;
 	if (literal.length() == 1 && !isdigit(literal[0]))//check the string length is equals to one
 		return CHAR;
 	if (isInt(literal))
 		return INT;
-	if (literal[literal.length() - 1] == 'f')
+	if (literal[literal.length() - 1] == 'f' && checkNumeric(literal))
 		return FLOAT;
-	if (literal[literal.length() - 1] != 'f')
-		return DOUBLE;
-	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
-		return FLOAT;
-	if (literal == "-inf" || literal == "+inf" || literal == "nan" )
+	if (literal.find('.') && checkNumeric(literal))
 		return DOUBLE;
 	return ERROR;
 }
