@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/27 22:54:55 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:11 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void displaydouble(double d)
 {
 	std::cout << "double: " << d;
-	if (d == d)
+	if (d == static_cast<int>(d))
 		std::cout << ".0";
 	std::cout << std::endl;
 }
@@ -23,9 +23,17 @@ static void displaydouble(double d)
 static void displayfloat(float f)
 {
 	std::cout << "float: " << f;
-	if (f == f)
+	if (f == static_cast<int>(f))
 		std::cout << ".0";
 	std::cout << "f" << std::endl;
+}
+
+static void displayint(double n)
+{
+	if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(n) << std::endl;
 }
 
 static void displaychar(char c)
@@ -113,7 +121,7 @@ void ScalarConverter::convert(std::string literal)
 			double d = static_cast<double>(n);
 			
 			displaychar(c);
-			std::cout << "int: " << n << std::endl;
+			displayint(n);
 			displayfloat(f);
 			displaydouble(d);
 			break;
@@ -122,11 +130,11 @@ void ScalarConverter::convert(std::string literal)
 		{
 			float f = std::strtof(literal.c_str(), 0);
 			char c = static_cast<char>(f);
-			int n = static_cast<int>(f);
+			// int n = static_cast<int>(f);
 			double d = static_cast<double>(f);
 			
 			displaychar(c);
-			std::cout << "int: " << n << std::endl;
+			displayint(d);
 			displayfloat(f);
 			displaydouble(d);
 			break;
@@ -135,11 +143,11 @@ void ScalarConverter::convert(std::string literal)
 		{
 			double d = std::strtod(literal.c_str(), 0);
 			char c = static_cast<char>(d);
-			int n = static_cast<int>(d);
+			// int n = static_cast<int>(d);
 			float f = static_cast<float>(d);
 			
 			displaychar(c);
-			std::cout << "int: " << n << std::endl;
+			displayint(d);
 			displayfloat(f);
 			displaydouble(d);
 			break;
