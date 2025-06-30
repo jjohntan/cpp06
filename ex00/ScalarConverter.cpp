@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:59:23 by jetan             #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:11 by jetan            ###   ########.fr       */
+/*   Updated: 2025/06/30 14:40:08 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,30 @@ static void displayfloat(float f)
 	std::cout << "f" << std::endl;
 }
 
-static void displayint(double n)
+/**
+ * @brief compare to int min and max, if overflow print impossible
+ * else type cast and print out the value
+ */
+static void displayint(double d)
 {
-	if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max())
+	//-inff, +inff, nanf, -inf, +inf and nan is a special floating-point value defined by the IEEE 754 standard
+	//Any comparison with the standard is false, even comparing it to itself.
+	if (d != d || d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n) << std::endl;
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
 }
 
-static void displaychar(char c)
+static void displaychar(double d)
 {
-	if (c < 0 || c > 127)
+	int n = static_cast<int>(d);
+	
+	if (n < 0 || n > 127)
 		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(c))
+	else if (!std::isprint(n))
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << "'" << c << "'" << std::endl;
+		std::cout << "char: " << "'" << static_cast<char>(d) << "'" << std::endl;
 }
 
 static bool checkNumeric(std::string literal)
@@ -103,25 +111,24 @@ void ScalarConverter::convert(std::string literal)
 		case CHAR:
 		{
 			char c = literal[0];
-			int n = static_cast<int>(c);
 			float f = static_cast<float>(c);
 			double d = static_cast<double>(c);
 			
-			displaychar(c);
-			std::cout << "int: " << n << std::endl;
+			displaychar(d);
+			std::cout << "int: " << static_cast<int>(c) << std::endl;
 			displayfloat(f);
 			displaydouble(d);
 			break;
 		}
 		case INT:
 		{
-			int n = std::atoi(literal.c_str());
-			char c = static_cast<char>(n);
-			float f = static_cast<float>(n);
-			double d = static_cast<double>(n);
+			//reason why not using atoi, if the string value is bigger than INT_MAX,
+			//it will causes undefined behavior
+			double d = std::strtod(literal.c_str(), 0);
+			float f = static_cast<float>(d);
 			
-			displaychar(c);
-			displayint(n);
+			displaychar(d);
+			displayint(d);
 			displayfloat(f);
 			displaydouble(d);
 			break;
@@ -129,11 +136,9 @@ void ScalarConverter::convert(std::string literal)
 		case FLOAT:
 		{
 			float f = std::strtof(literal.c_str(), 0);
-			char c = static_cast<char>(f);
-			// int n = static_cast<int>(f);
 			double d = static_cast<double>(f);
 			
-			displaychar(c);
+			displaychar(d);
 			displayint(d);
 			displayfloat(f);
 			displaydouble(d);
@@ -142,11 +147,9 @@ void ScalarConverter::convert(std::string literal)
 		case DOUBLE:
 		{
 			double d = std::strtod(literal.c_str(), 0);
-			char c = static_cast<char>(d);
-			// int n = static_cast<int>(d);
 			float f = static_cast<float>(d);
 			
-			displaychar(c);
+			displaychar(d);
 			displayint(d);
 			displayfloat(f);
 			displaydouble(d);
